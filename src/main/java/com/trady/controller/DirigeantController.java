@@ -2,6 +2,7 @@ package com.trady.controller;
 
 import com.trady.model.Dirigeant;
 import com.trady.service.DirigeantService;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -16,6 +17,17 @@ public class DirigeantController {
     @GetMapping
     public List<Dirigeant> getAll() {
         return dirigeantService.getAllDirigeant();
+    }
+
+    @GetMapping("/{id}")
+    public Dirigeant getDirigeantByid(@PathVariable Long id) {
+        return dirigeantService.getDirigeantById(id);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteDirigeantByid(@PathVariable Long id) {
+        dirigeantService.deleteDirigeantByid(id);
+        return ResponseEntity.noContent().build();
     }
 
     @PostMapping

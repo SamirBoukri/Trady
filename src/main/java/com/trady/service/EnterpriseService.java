@@ -20,4 +20,28 @@ public class EnterpriseService {
     public Entreprise saveEntreprise(Entreprise entreprise) {
         return entrepriseRepository.save(entreprise);
     }
+
+    public Entreprise getEntrepriseById(Long id) {
+
+        return entrepriseRepository.findById(id).orElseThrow(() -> new RuntimeException("entreprise not found"));
+    }
+
+    public Entreprise updateEntreprise(Entreprise entreprise, Long id) {
+        return entrepriseRepository.findById(id).map(existing -> {
+            existing.setNom(entreprise.getNom());
+            existing.setSiret(entreprise.getSiret());
+            existing.setAdresse(entreprise.getAdresse());
+            existing.setActivite(entreprise.getActivite());
+            existing.setStatutEnBourse(entreprise.getStatutEnBourse());
+            existing.setDirigeant(entreprise.getDirigeant());
+            return entrepriseRepository.save(existing);
+        }).orElseThrow(() -> new RuntimeException("entreprise not found"));
+    }
+
+    public Entreprise deleteEntrepriseById(Long id) {
+        Entreprise entreprise = entrepriseRepository.findById(id).orElseThrow(() -> new RuntimeException("entreprise not found"));
+        entrepriseRepository.delete(entreprise);
+
+        return entreprise;
+    }
 }
