@@ -27,4 +27,9 @@ public class DirigeantController {
     public Dirigeant update(@PathVariable Long id, @RequestBody Dirigeant e) {
         return dirigeantService.updateDirigeant(id, e);
     }
+
+    @PatchMapping("/{id}/entreprises")
+    public Dirigeant updateDirigentEntreprises(@PathVariable Long id, @RequestBody List<Long> entrepriseIds) {
+        return dirigeantService.updateDirigeantEntreprise(id, entrepriseIds);
+    }
 }

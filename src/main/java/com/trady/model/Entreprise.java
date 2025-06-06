@@ -1,5 +1,6 @@
 package com.trady.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -22,5 +23,6 @@ public class Entreprise {
 
     @ManyToOne
     @JoinColumn(name="dirigeant_id")
+    @JsonBackReference
     private Dirigeant dirigeant;
 }

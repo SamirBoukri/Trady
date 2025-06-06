@@ -1,6 +1,7 @@
 package com.trady.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -24,6 +25,7 @@ public class Dirigeant {
     private LocalDate dateDeNaissance;
 
     @OneToMany(mappedBy = "dirigeant",cascade = CascadeType.ALL)
+    @JsonManagedReference
     private List<Entreprise> entreprises;
 
 

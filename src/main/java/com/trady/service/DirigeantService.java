@@ -1,16 +1,25 @@
 package com.trady.service;
 
 import com.trady.model.Dirigeant;
+import com.trady.model.Entreprise;
 import com.trady.repository.DirigeantRepository;
+import com.trady.repository.EntrepriseRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class DirigeantService {
     private final DirigeantRepository dirigeantRepository;
 
-    public DirigeantService(DirigeantRepository dirigeantRepository) { this.dirigeantRepository = dirigeantRepository; }
+    private final EntrepriseRepository entrepriseRepository;
+
+    public DirigeantService(DirigeantRepository dirigeantRepository, EntrepriseRepository entrepriseRepository) {
+        this.dirigeantRepository = dirigeantRepository;
+        this.entrepriseRepository = entrepriseRepository;
+    }
 
     public List<Dirigeant> getAllDirigeant() {
         return dirigeantRepository.findAll();
@@ -30,5 +39,23 @@ public class DirigeantService {
                     return dirigeantRepository.save(existing);
                 })
                 .orElseThrow(() -> new RuntimeException("Dirigeant non trouvé"));
+    }
+
+    public Dirigeant updateDirigeantEntreprise(long id, List<Long> entreprisesIds) {
+        Dirigeant dirigeant = null;
+        Optional<Dirigeant> dirigeantOptional = dirigeantRepository.findById(id);
+        if (dirigeantOptional.isPresent()) {
+            dirigeant = dirigeantOptional.get();
+        }
+
+        List<Entreprise> entreprises = entrepriseRepository.findAllById(entreprisesIds);
+
+        for(Entreprise entreprise : entreprises) {
+            entreprise.setDirigeant(dirigeant);
+        }
+
+        entrepriseRepository.saveAll(entreprises);
+
+        return dirigeant;
     }
 }
