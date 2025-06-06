@@ -4,6 +4,7 @@ import com.trady.model.Dirigeant;
 import com.trady.model.Entreprise;
 import com.trady.repository.DirigeantRepository;
 import com.trady.repository.EntrepriseRepository;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -23,6 +24,14 @@ public class DirigeantService {
 
     public List<Dirigeant> getAllDirigeant() {
         return dirigeantRepository.findAll();
+    }
+
+    public Dirigeant getDirigeantById(Long id) {
+        return dirigeantRepository.findById(id).orElseThrow(()-> new EntityNotFoundException("Dirigeant with id " + id + " not found"));
+    }
+
+    public void deleteDirigeantByid(Long id) {
+        dirigeantRepository.deleteById(id);
     }
 
     public Dirigeant saveDirigeant(Dirigeant dirigeant) {
