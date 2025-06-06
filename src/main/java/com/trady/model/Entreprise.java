@@ -1,9 +1,6 @@
 package com.trady.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -23,4 +20,7 @@ public class Entreprise {
     private String activite;
     private String statutEnBourse; // exemple : Proposée / Validée / Refusée
 
+    @ManyToOne
+    @JoinColumn(name="dirigeant_id")
+    private Dirigeant dirigeant;
 }
