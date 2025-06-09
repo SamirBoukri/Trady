@@ -34,6 +34,7 @@ public class EnterpriseService {
             existing.setActivite(entreprise.getActivite());
             existing.setStatutEnBourse(entreprise.getStatutEnBourse());
             existing.setDirigeant(entreprise.getDirigeant());
+            existing.setCourtier(entreprise.getCourtier());
             return entrepriseRepository.save(existing);
         }).orElseThrow(() -> new RuntimeException("entreprise not found"));
     }

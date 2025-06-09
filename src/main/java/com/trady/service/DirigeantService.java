@@ -7,7 +7,6 @@ import com.trady.repository.EntrepriseRepository;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -44,7 +43,6 @@ public class DirigeantService {
                     existing.setNom(dirigeant.getNom());
                     existing.setPrenom(dirigeant.getPrenom());
                     existing.setDateDeNaissance(dirigeant.getDateDeNaissance());
-                    existing.setEntreprises(dirigeant.getEntreprises());
                     return dirigeantRepository.save(existing);
                 })
                 .orElseThrow(() -> new RuntimeException("Dirigeant non trouvé"));

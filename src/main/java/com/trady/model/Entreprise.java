@@ -25,4 +25,8 @@ public class Entreprise {
     @JoinColumn(name="dirigeant_id")
     @JsonBackReference
     private Dirigeant dirigeant;
+
+    @ManyToOne
+    @JoinColumn(name = "courtier_id")
+    private Courtier courtier;
 }
