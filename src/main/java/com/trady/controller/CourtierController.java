@@ -25,4 +25,14 @@ public class CourtierController {
         return courtierService.saveCourtier(c);
     }
 
+    @PutMapping("/{id}")
+    public Courtier  updateCourtier(@PathVariable Long id, @RequestBody Courtier c) {
+        return courtierService.updateCourtier(c, id);
+    }
+
+    @DeleteMapping("/{id}")
+    public void deleteCourtier(@PathVariable Long id) {
+        courtierService.deleteCourtier(id);
+    }
+
 }

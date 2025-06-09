@@ -18,5 +18,15 @@ public class CourtierService {
 
     public Courtier saveCourtier(Courtier courtier) {return courtierRepository.save(courtier);};
 
+    public Courtier updateCourtier(Courtier courtier, Long id) {
+        return courtierRepository.findById(id).map(existing -> {
+            existing.setNom(courtier.getNom());
+            existing.setPrenom(courtier.getPrenom());
+            return courtierRepository.save(existing);
+        }).orElseThrow(() -> new RuntimeException("Courtier non trouvé"));
+    }
 
+    public void deleteCourtier(Long id) {
+        courtierRepository.deleteById(id);
+    }
 }

@@ -43,7 +43,6 @@ public class DirigeantService {
                     existing.setNom(dirigeant.getNom());
                     existing.setPrenom(dirigeant.getPrenom());
                     existing.setDateDeNaissance(dirigeant.getDateDeNaissance());
-                    existing.setEntreprises(dirigeant.getEntreprises());
                     return dirigeantRepository.save(existing);
                 })
                 .orElseThrow(() -> new RuntimeException("Dirigeant non trouvé"));

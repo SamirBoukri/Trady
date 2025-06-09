@@ -24,4 +24,14 @@ public class ClientController {
         return clientService.saveClient(client);
     }
 
+    @PutMapping("/{id}")
+    public Client updateclient(@PathVariable Long id, @RequestBody Client c) {
+        return clientService.updateclient(c, id);
+    }
+
+    @DeleteMapping("/{id}")
+    public void deleteclient(@PathVariable Long id) {
+        clientService.deleteclient(id);
+    }
+
 }
