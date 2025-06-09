@@ -2,7 +2,6 @@ package com.trady.controller;
 
 
 import com.trady.model.Entreprise;
-import com.trady.repository.EntrepriseRepository;
 import com.trady.service.EnterpriseService;
 import org.springframework.web.bind.annotation.*;
 

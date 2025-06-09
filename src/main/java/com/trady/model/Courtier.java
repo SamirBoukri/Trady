@@ -1,9 +1,11 @@
 package com.trady.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Getter
@@ -11,10 +13,13 @@ import lombok.Setter;
 public class Courtier {
 
     @Id
-    private int siret;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
     private String nom;
     private String prenom;
 
+    @OneToMany(mappedBy = "courtier", cascade = CascadeType.ALL)
+    private List<Entreprise> entreprises = new ArrayList<>();
 
 }

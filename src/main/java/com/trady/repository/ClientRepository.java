@@ -1,4 +1,7 @@
 package com.trady.repository;
 
-public class ClientRepository {
+import com.trady.model.Client;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface ClientRepository extends JpaRepository<Client, Long> {
 }

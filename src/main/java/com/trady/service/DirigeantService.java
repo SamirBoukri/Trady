@@ -6,7 +6,6 @@ import com.trady.repository.DirigeantRepository;
 import com.trady.repository.EntrepriseRepository;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 

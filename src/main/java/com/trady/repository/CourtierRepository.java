@@ -1,4 +1,7 @@
 package com.trady.repository;
 
-public class CourtierRepository {
+import com.trady.model.Courtier;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface CourtierRepository extends JpaRepository<Courtier, Long> {
 }
